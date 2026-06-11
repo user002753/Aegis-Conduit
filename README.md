@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Aegis Conduit
 
 **Aegis Conduit is an offline-first crisis coordination system for humanitarian logistics when cloud, telecom, and centralized command infrastructure are unreliable.**
@@ -341,3 +342,7 @@ Recommended submission links:
 ```text
 AI that keeps humanitarian operations running when everything else fails.
 ```
+=======
+# Aegis-Conduit-Decentralized-Crisis-Logistics-an-Resiliency-Agent
+An offline-first, multi-agent operations console for humanitarian logistics. Cryptographically verifies field reports, re-ranks evacuation routes, optimizes supply distribution, and synchronizes state over local mesh networks when cloud, telecom, and centralized infrastructure fail. Built for the Agents League Hackathon.
+>>>>>>> 3f5747fe5fc3025cbd7ffffcd4e7e14dad027385
