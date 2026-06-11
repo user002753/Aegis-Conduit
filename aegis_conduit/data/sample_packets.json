@@ -1,0 +1,7 @@
+[
+  {"source": "NGO_Field_HQ", "message": "Minor weather blockage on Route_Alpha due to mud.", "target_route": "Route_Alpha", "type": "weather_blockage", "severity": 1.2},
+  {"source": "Volunteer_22", "message": "Bridge cleared at checkpoint; passage ok.", "target_route": "Route_Beta", "type": "infrastructure_clear", "severity": 0.1},
+  {"source": "Sensor_07", "message": "Water level rising at supply_depot", "target_route": "Route_Alpha", "type": "weather", "severity": 2.0},
+  {"source": "Field_Medic", "message": "Medical supplies delayed at warehouse; minor delay.", "target_route": "Route_Alpha", "type": "logistics", "severity": 0.5},
+  {"source": "Unknown_Node_999", "message": "Urgent: Route_Gamma compromised by armed group.", "target_route": "Route_Gamma", "type": "security_hazard", "severity": 4.8}
+]

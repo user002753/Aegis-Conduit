@@ -1,0 +1,42 @@
+[
+  {
+    "source": "NGO_Field_HQ",
+    "message": "Two cargo vans slowed to 11 km/h after mud accumulation on Route_Alpha northbound lane.",
+    "target_route": "Route_Alpha",
+    "type": "weather_blockage",
+    "severity": 1.8,
+    "confidence": 0.88
+  },
+  {
+    "source": "Volunteer_22",
+    "message": "Checkpoint bridge reopened at 19:38; 3 light vehicles crossed without axle stress warnings.",
+    "target_route": "Route_Beta",
+    "type": "infrastructure_clear",
+    "severity": 0.4,
+    "confidence": 0.91
+  },
+  {
+    "source": "Sensor_07",
+    "message": "Water depth increased from 18cm to 31cm over 12 minutes near Connector-4.",
+    "target_route": "Route_Alpha",
+    "type": "sensor_alert",
+    "severity": 2.9,
+    "confidence": 0.94
+  },
+  {
+    "source": "Field_Medic",
+    "message": "Insulin cold box delayed 9 minutes at warehouse gate; alternate medical corridor requested.",
+    "target_route": "Route_Medical",
+    "type": "logistics",
+    "severity": 1.3,
+    "confidence": 0.86
+  },
+  {
+    "source": "Anonymous_User_42",
+    "message": "Unverified crowd report: 14-18 people blocking Route_Gamma near Market-3 checkpoint.",
+    "target_route": "Route_Gamma",
+    "type": "security_hazard",
+    "severity": 4.5,
+    "confidence": 0.63
+  }
+]

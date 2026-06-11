@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      # Opt-in external integrations (keep unset for local-only behavior)
+      - FOUNDRY_API_URL=${FOUNDRY_API_URL:-}
+      - FOUNDRY_API_KEY=${FOUNDRY_API_KEY:-}
+      - ENABLE_FOUNDRY=${ENABLE_FOUNDRY:-false}
+      - AZURE_STORAGE_CONNECTION_STRING=${AZURE_STORAGE_CONNECTION_STRING:-}
+      - AZURE_COT_CONTAINER=${AZURE_COT_CONTAINER:-cot-exports}
+    volumes:
+      - ./data:/app/data
+    command: ["python", "-m", "aegis_conduit.cli", "--serve"]
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    environment:
+      - VITE_PORT=5173
+  demo:
+    build: .
+    depends_on:
+      - api
+    # conservative: wait a few seconds for API to start, then run the demo runner
+    command: ["sh", "-c", "sleep 5 && python scripts/demo_runner.py --host http://api:8000 --count 6 --interval 5"]
+    environment:
+      - ENABLE_FOUNDRY=${ENABLE_FOUNDRY:-false}
+      - FOUNDRY_API_URL=${FOUNDRY_API_URL:-}
+      - FOUNDRY_API_KEY=${FOUNDRY_API_KEY:-}

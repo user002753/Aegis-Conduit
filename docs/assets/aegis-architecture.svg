@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Aegis Conduit Architecture</title>
+  <desc id="desc">Offline-first crisis coordination architecture showing React console, FastAPI ingestion, CrisisAgent, hybrid reasoning engine, and mesh recovery.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 18; }
+      .primary { fill: #0f766e; }
+      .secondary { fill: #1d4ed8; }
+      .warning { fill: #b45309; }
+      .ink { fill: #0f172a; font-family: Inter, Segoe UI, Arial, sans-serif; }
+      .muted { fill: #475569; font-family: Inter, Segoe UI, Arial, sans-serif; }
+      .label { font-size: 24px; font-weight: 700; }
+      .small { font-size: 17px; font-weight: 500; }
+      .tiny { font-size: 15px; font-weight: 500; }
+      .arrow { stroke: #334155; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .dash { stroke-dasharray: 8 8; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1280" height="720" />
+  <text x="640" y="56" text-anchor="middle" class="ink" style="font-size:36px;font-weight:800;">Aegis Conduit</text>
+  <text x="640" y="88" text-anchor="middle" class="muted small">Offline-first multi-agent crisis coordination</text>
+
+  <rect class="panel" x="430" y="120" width="420" height="78" />
+  <text x="640" y="154" text-anchor="middle" class="ink label">React Tactical Console</text>
+  <text x="640" y="180" text-anchor="middle" class="muted tiny">Commander View, map, agent traces, CRDT recovery</text>
+
+  <path class="arrow" d="M640 198 L640 238" />
+
+  <rect class="panel" x="430" y="238" width="420" height="78" />
+  <text x="640" y="272" text-anchor="middle" class="ink label">FastAPI Ingestion + SSE</text>
+  <text x="640" y="298" text-anchor="middle" class="muted tiny">Reports, hazards, routes, state, decision traces</text>
+
+  <path class="arrow" d="M640 316 L640 356" />
+
+  <rect class="panel" x="430" y="356" width="420" height="78" />
+  <text x="640" y="390" text-anchor="middle" class="ink label">CrisisAgent Orchestrator</text>
+  <text x="640" y="416" text-anchor="middle" class="muted tiny">Coordinates validation, routing, planning, sync</text>
+
+  <path class="arrow" d="M640 434 L640 474" />
+
+  <rect class="panel" x="170" y="474" width="940" height="150" />
+  <text x="640" y="508" text-anchor="middle" class="ink label">Hybrid Reasoning Engine</text>
+
+  <rect x="205" y="530" width="160" height="62" rx="12" fill="#ecfdf5" stroke="#0f766e" stroke-width="2" />
+  <text x="285" y="557" text-anchor="middle" class="primary small">Trust</text>
+  <text x="285" y="580" text-anchor="middle" class="muted tiny">Signatures + evidence</text>
+
+  <rect x="385" y="530" width="160" height="62" rx="12" fill="#eff6ff" stroke="#1d4ed8" stroke-width="2" />
+  <text x="465" y="557" text-anchor="middle" class="secondary small">Routing</text>
+  <text x="465" y="580" text-anchor="middle" class="muted tiny">Hazard-aware graph</text>
+
+  <rect x="565" y="530" width="160" height="62" rx="12" fill="#fff7ed" stroke="#b45309" stroke-width="2" />
+  <text x="645" y="557" text-anchor="middle" class="warning small">Constraints</text>
+  <text x="645" y="580" text-anchor="middle" class="muted tiny">Policy + operations</text>
+
+  <rect x="745" y="530" width="160" height="62" rx="12" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2" />
+  <text x="825" y="557" text-anchor="middle" style="fill:#6d28d9;font-family:Inter,Segoe UI,Arial,sans-serif;font-size:17px;font-weight:700;">Optimization</text>
+  <text x="825" y="580" text-anchor="middle" class="muted tiny">Vehicles + supplies</text>
+
+  <rect x="925" y="530" width="150" height="62" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="2" />
+  <text x="1000" y="557" text-anchor="middle" style="fill:#dc2626;font-family:Inter,Segoe UI,Arial,sans-serif;font-size:17px;font-weight:700;">Agents</text>
+  <text x="1000" y="580" text-anchor="middle" class="muted tiny">Mission director</text>
+
+  <path class="arrow" d="M170 548 C92 548 92 300 430 277" />
+  <text x="76" y="330" class="muted tiny">Signed field reports</text>
+  <text x="76" y="354" class="muted tiny">Hazards and telemetry</text>
+
+  <path class="arrow dash" d="M1110 548 C1195 548 1195 300 850 277" />
+  <text x="1050" y="330" class="muted tiny">Live route updates</text>
+  <text x="1050" y="354" class="muted tiny">Decision traces</text>
+
+  <path class="arrow" d="M640 624 L640 666" />
+  <rect class="panel" x="410" y="654" width="460" height="52" />
+  <text x="640" y="687" text-anchor="middle" class="ink small">MeshSync + CRDT state store + SQLite persistence</text>
+</svg>

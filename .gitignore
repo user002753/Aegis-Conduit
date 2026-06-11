@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+.venv-*/
+venv/
+source/
+
+# Local state and generated data
+*.db
+*.sqlite
+*.sqlite3
+.cache/
+*.log
+*.out.log
+*.err.log
+
+# Secrets and environment
+.env
+.env.*
+!.env.example
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.log
+
+# IDE and OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated demo exports
+decision_trace_history.json
+anomaly_history.csv
+anomaly_slide.png
