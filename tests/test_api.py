@@ -1,3 +1,5 @@
+import os
+from unittest.mock import patch
 from fastapi.testclient import TestClient
 
 from aegis_conduit.agent import CrisisAgent
@@ -5,6 +7,7 @@ from aegis_conduit.mesh_sync import MeshSyncEngine
 from aegis_conduit.data_veracity import VeracityEngine
 from aegis_conduit.routing import RouteEvaluator
 from aegis_conduit.api import create_app
+from aegis_conduit.foundry_iq import FoundryIQ
 
 
 def setup_app():
@@ -88,10 +91,6 @@ def test_foundry_ground_endpoint():
 
 
 def test_foundry_iq_cross_reference_with_mock_client():
-    import os
-    from unittest.mock import patch
-    from aegis_conduit.foundry_iq import FoundryIQ
-
     app, agent = setup_app()
     client = TestClient(app)
     
