@@ -289,9 +289,9 @@ export AZURE_COT_CONTAINER="cot-exports"
 
 No secrets are required for the local demo.
 
-## Implementation Boundaries
+## Core Architecture
 
-Implemented and test-covered:
+### Implemented Features
 
 - Ed25519-style signed report verification with public-key reports.
 - Spoofed report rejection and trusted authority acceptance.
@@ -301,12 +301,16 @@ Implemented and test-covered:
 - Mesh gossip, report dedupe, and CRDT merge markers.
 - FastAPI report and hazard endpoints.
 
-Scaffolded for future hardening:
+### Future Roadmap
 
 - Real Bluetooth, Wi-Fi Direct, and LoRa adapters.
 - Production-grade RBAC, encrypted transport, and device provisioning.
 - External Foundry grounding and Azure Blob backup beyond local opt-in demos.
 - Browser automation for the full click-through judge flow.
+
+## Development Process & AI Disclosure
+
+Aegis Conduit was built with assistance from advanced AI coding models (Gemini) for code scaffolding, optimization, and unit testing. The core architecture, hybrid reasoning logic, and cryptographic verification flow are custom designed and verified.
 
 ## Why This Is Different
 
@@ -340,24 +344,11 @@ Aegis instead combines verifiable trust, graph routing, resource optimization, m
 | Fail at a single coordination point | CRDT-backed recovery |
 | Produce isolated dashboards | Agent-directed mission plans |
 
-## Innovation Studio Submission
-
-Before linking the project in Microsoft Innovation Studio:
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit for Aegis Conduit"
-git branch -M main
-git remote add origin https://github.com/<your-username>/aegis-conduit.git
-git push -u origin main
-```
-
-Then open the Innovation Studio project, use **Manage project** -> **Edit Project**, and paste the repository URL into the repository/source-code field.
+## Submission Details
 
 Recommended submission links:
 
-- Repository URL: `https://github.com/<your-username>/aegis-conduit`
+- Repository URL: `https://github.com/user002753/Aegis-Conduit`
 - Local demo command: `python scripts/full_demo.py`
 - Frontend URL after launch: `http://localhost:5173/`
 - API docs after launch: `http://localhost:8000/docs`
