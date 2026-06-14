@@ -2,7 +2,7 @@
 
 An offline-first, multi-agent operations console for humanitarian logistics. Cryptographically verifies field reports, re-ranks evacuation routes, optimizes supply distribution, and synchronizes state over local mesh networks when cloud, telecom, and centralized infrastructure fail. Built for the Agents League Hackathon.
 
-## ⚡ Executive Summary
+## Executive Summary
 
 Aegis Conduit is an offline-first multi-agent crisis operations platform designed for humanitarian logistics when cloud infrastructure, telecommunications, and centralized networks completely fail. 
 
@@ -24,25 +24,21 @@ During disasters, conflict zones, and infrastructure outages, responders still n
 
 Aegis Conduit turns fragmented field signals into a signed, auditable mission briefing that can keep operating offline.
 
-## 📸 Tactical Console Walkthrough
+## Tactical Console Walkthrough
 
 ### 1. Commander View & Operations Center
 The main tactical view provides real-time visibility into the current mission plan, trusted/rejected report filters, and operational metrics.
-![Commander View](docs/screenshots/commander.png)
 
 ### 2. Autonomous Agent Command Trace
 Every agent in the pipeline visibly observes, reasons, and posts its decision log securely to the system's state machine.
-![Agent Flow](docs/screenshots/agents.png)
 
 ### 3. Cryptographic Trust Verification
 Demonstrating the exact moment an unverified crowd report is rejected due to a bad signature, while an authorized emergency response packet is instantly parsed.
-![Trust Demo](docs/screenshots/trust-demo.png)
 
 ### 4. CRDT Offline-to-Online Mesh Sync
 Simulating total cloud disconnection. When the "Sync" button is deployed, split-brain nodes automatically converge their ledger states without conflicts.
-![CRDT Sync](docs/screenshots/crdt-sync.png)
 
-## 📊 Demonstrated Outcomes
+## Demonstrated Outcomes
 
 The local benchmark runs an end-to-end scenario involving 3 evacuation corridors, 2 offline mesh nodes, 3 transport vehicles, and 2 conflicting hazard reports.
 
@@ -187,22 +183,25 @@ The frontend falls back to bundled sample data if the API is not running, so the
 ![Aegis Conduit architecture](docs/assets/aegis-architecture.svg)
 
 ```text
-React Tactical Console
-        |
-FastAPI ingestion + SSE stream
-        |
-CrisisAgent orchestrator
-        |
-Hybrid Reasoning Engine
-        |
-+--------------------+--------------------+-------------------+
-| Trust Reasoning    | Routing Reasoning  | Optimization      |
-| Ed25519 identity   | Risk-ranked paths  | Convoy assignment |
-+--------------------+--------------------+-------------------+
-        |
-MeshSync + CRDT state store
-        |
-Offline field replicas / local SQLite persistence
+       React Tactical Console
+                 |
+     FastAPI Ingestion + SSE Stream
+                 |
+       CrisisAgent Orchestrator
+                 |
+       Hybrid Reasoning Engine
+  +------------------------------------+
+  | Trust  | Routing | Optimization    |
+  | Engine | Graphs  | Fallback Engine |
+  +------------------------------------+
+                 |
+    MeshSync + CRDT State Store
+                 |
+  +--------------+--------------+
+  |                             |
+[Offline Field Replicas]   [Foundry EVM Layer]
+(Local SQLite Nodes)       (On-chain Trust Anchor
+                            & Identity Verification)
 ```
 
 ## Core Components
@@ -310,7 +309,7 @@ No secrets are required for the local demo.
 
 ## Development Process & AI Disclosure
 
-Aegis Conduit was built with assistance from advanced AI coding models (Gemini) for code scaffolding, optimization, and unit testing. The core architecture, hybrid reasoning logic, and cryptographic verification flow are custom designed and verified.
+To maximize efficiency during the hackathon, we paired traditional development with AI assistance. AI tools were utilized to accelerate the generation of the deterministic test suites, scaffold initial FastAPI endpoints, and help refine the multi-agent reasoning logs, allowing us to focus our core energy on implementing the cryptographic verification and CRDT mesh synchronization logic.
 
 ## Why This Is Different
 
