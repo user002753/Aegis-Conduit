@@ -68,3 +68,58 @@ def test_post_hazard_changes_routes():
     affected = next((rid for rid in after_map if 'supply_depot' in rid), None)
     assert affected is not None
     assert after_map[affected] >= base_map.get(affected, 0)
+
+
+def test_foundry_ground_endpoint():
+    app, agent = setup_app()
+    client = TestClient(app)
+    
+    payload = {
+        "event": {
+            "reference_id": "road_status_feed",
+            "status": "authenticated"
+        }
+    }
+    resp = client.post("/foundry/ground", json=payload)
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["trusted"] is True
+    assert data["citations"][0]["source"] == "mock_foundry_iq"
+
+
+def test_foundry_iq_cross_reference_with_mock_client():
+    import os
+    from unittest.mock import patch
+    from aegis_conduit.foundry_iq import FoundryIQ
+
+    app, agent = setup_app()
+    client = TestClient(app)
+    
+    with patch.dict(os.environ, {
+        "ENABLE_FOUNDRY": "true",
+        "FOUNDRY_API_URL": "http://testserver/foundry",
+        "FOUNDRY_API_KEY": "test-key"
+    }):
+        fi = FoundryIQ()
+        assert fi.is_connected() is True
+        
+        event = {
+            "reference_id": "road_status_feed",
+            "status": "authenticated"
+        }
+        
+        def mock_post(url, headers, data, timeout):
+            assert url == "http://testserver/foundry/ground"
+            assert headers["Authorization"] == "Bearer test-key"
+            resp = client.post("/foundry/ground", content=data)
+            class MockResponse:
+                status_code = resp.status_code
+                def json(self):
+                    return resp.json()
+            return MockResponse()
+            
+        with patch("requests.post", side_effect=mock_post):
+            result = fi.cross_reference(event)
+            assert result["trusted"] is True
+            assert result["citations"][0]["source"] == "mock_foundry_iq"
+

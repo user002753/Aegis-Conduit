@@ -1,9 +1,17 @@
-<<<<<<< HEAD
 # Aegis Conduit
 
-**Aegis Conduit is an offline-first crisis coordination system for humanitarian logistics when cloud, telecom, and centralized command infrastructure are unreliable.**
+An offline-first, multi-agent operations console for humanitarian logistics. Cryptographically verifies field reports, re-ranks evacuation routes, optimizes supply distribution, and synchronizes state over local mesh networks when cloud, telecom, and centralized infrastructure fail. Built for the Agents League Hackathon.
 
-It is built for the Agents League hackathon as a multi-agent operations console, not a chatbot. Aegis verifies field reports, rejects misinformation, re-ranks evacuation corridors, reallocates supplies, generates an operator-readable mission plan, and keeps state recoverable through local mesh synchronization.
+## ⚡ Executive Summary
+
+Aegis Conduit is an offline-first multi-agent crisis operations platform designed for humanitarian logistics when cloud infrastructure, telecommunications, and centralized networks completely fail. 
+
+The platform autonomously:
+- **Cryptographically Verifies** incoming field signals (Ed25519 public-key reports).
+- **Filters Misinformation** using a trust-weighted veracity reasoning engine.
+- **Dynamic Route Replanning** via risk-aware corridor graph scoring.
+- **Optimizes Fleet Logistics** utilizing capacity-aware constraint reasoning.
+- **Synchronizes State Offline** across disconnected mesh nodes using CRDT recovery.
 
 ## Why It Matters
 
@@ -15,6 +23,35 @@ During disasters, conflict zones, and infrastructure outages, responders still n
 - What happens when the cloud link drops?
 
 Aegis Conduit turns fragmented field signals into a signed, auditable mission briefing that can keep operating offline.
+
+## 📸 Tactical Console Walkthrough
+
+### 1. Commander View & Operations Center
+The main tactical view provides real-time visibility into the current mission plan, trusted/rejected report filters, and operational metrics.
+![Commander View](docs/screenshots/commander.png)
+
+### 2. Autonomous Agent Command Trace
+Every agent in the pipeline visibly observes, reasons, and posts its decision log securely to the system's state machine.
+![Agent Flow](docs/screenshots/agents.png)
+
+### 3. Cryptographic Trust Verification
+Demonstrating the exact moment an unverified crowd report is rejected due to a bad signature, while an authorized emergency response packet is instantly parsed.
+![Trust Demo](docs/screenshots/trust-demo.png)
+
+### 4. CRDT Offline-to-Online Mesh Sync
+Simulating total cloud disconnection. When the "Sync" button is deployed, split-brain nodes automatically converge their ledger states without conflicts.
+![CRDT Sync](docs/screenshots/crdt-sync.png)
+
+## 📊 Demonstrated Outcomes
+
+The local benchmark runs an end-to-end scenario involving 3 evacuation corridors, 2 offline mesh nodes, 3 transport vehicles, and 2 conflicting hazard reports.
+
+| Operational Metric | Before Optimization | After Aegis Conduit Engine | Impact Benefit |
+| :--- | :--- | :--- | :--- |
+| **Delivery Span / ETA** | 12.4 Hours | 7.1 Hours | **42% Faster Delivery** |
+| **Fleet Fuel Use** | 100% (Baseline) | 69% | **31% Fuel Saved** |
+| **Spoofed Report Rejection** | 0% (Vulnerable) | 100% Cryptographically Filtered | **Total Signal Integrity** |
+| **Mesh Convergence** | Partitioned State | Automatic CRDT Conflict Resolution | **Seamless Offline Sync** |
 
 ## What Works End-to-End
 
@@ -101,21 +138,49 @@ Results:
 
 `python scripts/full_demo.py` also prints timing metrics for spoof rejection, signed-report-to-route ranking, resource assignment, and mesh merge.
 
-## Judge Demo Flow
+## 🏁 Judge Quick Start (Under 60 Seconds)
 
-Recommended 5-minute live sequence:
+### Run via Docker Compose:
+```bash
+docker compose up --build
+```
 
-1. Start the app with Docker Compose or local dev commands below.
-2. Open the React console.
-3. Click **Run Trust Demo** to show fake report rejection and signed authority acceptance.
-4. Click **Simulate Bridge Failure** to show route re-ranking around the checkpoint corridor.
-5. Click **Run Agent Mission** to show Verification, Routing, Logistics, and Mission Director agents executing in sequence.
-6. Click **Sync** in the CRDT panel to show offline-to-online mesh recovery.
-7. Run `python scripts/full_demo.py` as the CLI proof that the same story is backed by executable logic.
+*Open the console at:* `http://localhost:5173`
 
-Closing line:
+### Option B: Local Backend + Frontend
 
-> Aegis Conduit keeps humanitarian operations coordinated when cloud connectivity, telecom infrastructure, and centralized services are unavailable.
+Install Python dependencies:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+```
+
+Start the API:
+
+```powershell
+python -m aegis_conduit.cli --serve
+```
+
+Start the React frontend in another terminal:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173/`.
+
+The frontend falls back to bundled sample data if the API is not running, so the visual demo can still be shown offline.
+
+### Recommended 5-Minute Live Judging Sequence:
+
+1. **Run Trust Demo** ➔ Observe how fake report signatures are dropped while official alerts clear the gate.
+2. **Simulate Bridge Failure** ➔ Watch the recommendation stack immediately re-rank corridors to avoid the hazard.
+3. **Run Agent Mission** ➔ Watch the sequential chain execution of the Verification, Routing, Logistics, and Mission Director agents.
+4. **Hit Sync** ➔ Simulate cloud failure recovery as the local mesh matches states cleanly.
 
 ## System Architecture
 
@@ -155,48 +220,6 @@ Offline field replicas / local SQLite persistence
 - `aegis_conduit/state_store.py` - SQLite persistence for reports, routes, trusted events, and signed decision traces.
 - `scripts/full_demo.py` - In-process judge proof: spoof rejection, signed trust, routing, mission planning, optimization, and CRDT merge.
 - `scripts/demo_runner.py` - API demo runner for posting reports into a live service.
-
-## Quick Start
-
-### Option A: Docker Compose
-
-```bash
-docker compose up --build
-```
-
-Open:
-
-- Frontend: `http://localhost:5173/`
-- Backend API docs: `http://localhost:8000/docs`
-- Backend health: `http://localhost:8000/health`
-
-### Option B: Local Backend + Frontend
-
-Install Python dependencies:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-```
-
-Start the API:
-
-```powershell
-python -m aegis_conduit.cli --serve
-```
-
-Start the React frontend in another terminal:
-
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-Open `http://localhost:5173/`.
-
-The frontend falls back to bundled sample data if the API is not running, so the visual demo can still be shown offline.
 
 ## Verification Commands
 
@@ -247,13 +270,15 @@ cd frontend; npm run build  -> passed, 1 Vite CJS deprecation warning
 
 ## External Integrations
 
-The judge demo is local-first by default. External services are opt-in:
+The integration is local-first by default. To enable the Microsoft Foundry IQ connector, set:
 
 ```bash
 export ENABLE_FOUNDRY=true
-export FOUNDRY_API_URL="https://your-foundry.example"
-export FOUNDRY_API_KEY="<your-key>"
+export FOUNDRY_API_URL="http://localhost:8000/foundry" # or "https://your-foundry.example"
+export FOUNDRY_API_KEY="mock-or-real-key"
 ```
+
+A mock Microsoft Foundry IQ grounding service endpoint is fully implemented on the FastAPI server at `/foundry/ground` to facilitate complete, self-contained offline testing and demos.
 
 Optional Azure Blob backup for decision traces:
 
@@ -342,7 +367,3 @@ Recommended submission links:
 ```text
 AI that keeps humanitarian operations running when everything else fails.
 ```
-=======
-# Aegis-Conduit-Decentralized-Crisis-Logistics-an-Resiliency-Agent
-An offline-first, multi-agent operations console for humanitarian logistics. Cryptographically verifies field reports, re-ranks evacuation routes, optimizes supply distribution, and synchronizes state over local mesh networks when cloud, telecom, and centralized infrastructure fail. Built for the Agents League Hackathon.
->>>>>>> 3f5747fe5fc3025cbd7ffffcd4e7e14dad027385

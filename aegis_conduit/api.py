@@ -208,6 +208,22 @@ def create_app(agent) -> FastAPI:
         queue = agent.broadcaster.subscribe()
         return StreamingResponse(sse_generator(queue), media_type="text/event-stream")
 
+    @app.post("/foundry/ground")
+    def mock_foundry_ground(payload: dict):
+        event = payload.get("event", {})
+        ref = event.get("reference_id")
+        status = event.get("status")
+        registry = {
+            "warehouse_inventories": "verified",
+            "evacuation_protocols": "active",
+            "road_status_feed": "authenticated",
+        }
+        expected = registry.get(ref)
+        trusted = bool(expected and expected == status)
+        citations = [{"source": "mock_foundry_iq", "reference_id": ref, "status": expected}]
+        reason = "grounded via mock foundry iq" if trusted else "grounding failed in mock foundry iq"
+        return {"trusted": trusted, "reason": reason, "citations": citations}
+
     # If a built frontend exists, serve it at root. Also attach a startup
     # event that attempts to mount the static frontend if it is present when
     # the application starts (covers cases where build happened just before serve).
