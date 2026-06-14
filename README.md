@@ -26,16 +26,16 @@ Aegis Conduit turns fragmented field signals into a signed, auditable mission br
 
 ## Tactical Console Walkthrough
 
-### 1. Commander View & Operations Center
+### Commander View & Operations Center
 The main tactical view provides real-time visibility into the current mission plan, trusted/rejected report filters, and operational metrics.
 
-### 2. Autonomous Agent Command Trace
+### Autonomous Agent Command Trace
 Every agent in the pipeline visibly observes, reasons, and posts its decision log securely to the system's state machine.
 
-### 3. Cryptographic Trust Verification
+### Cryptographic Trust Verification
 Demonstrating the exact moment an unverified crowd report is rejected due to a bad signature, while an authorized emergency response packet is instantly parsed.
 
-### 4. CRDT Offline-to-Online Mesh Sync
+### CRDT Offline-to-Online Mesh Sync
 Simulating total cloud disconnection. When the "Sync" button is deployed, split-brain nodes automatically converge their ledger states without conflicts.
 
 ## Demonstrated Outcomes
@@ -134,7 +134,7 @@ Results:
 
 `python scripts/full_demo.py` also prints timing metrics for spoof rejection, signed-report-to-route ranking, resource assignment, and mesh merge.
 
-## 🏁 Judge Quick Start (Under 60 Seconds)
+## Judge Quick Start (Under 60 Seconds)
 
 ### Run via Docker Compose:
 ```bash
